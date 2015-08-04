@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: doctrine.yml }
+
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }
