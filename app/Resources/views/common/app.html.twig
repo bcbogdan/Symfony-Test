@@ -5,8 +5,9 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent()}}
-    <script type="text/javascript"
-            src="{{asset( 'bundles/app/js/app.js' )}}" ></script>
+    <script type="text/javascript" src="{{asset( 'bundles/app/js/app.js' )}}" ></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
 {% endblock %}
 {% block body %}
     <div id="container" class="ui-widget">
@@ -20,7 +21,7 @@
         </div>
         <div id="footer" class="ui-widget-content">
             {% block footer %}
-                <a href="{{ path('catalog_index') }}">Back to catalog</a>
+
             {% endblock %}
         </div>
     </div>
