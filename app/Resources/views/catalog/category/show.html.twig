@@ -11,7 +11,7 @@
         </tr>
         <tr>
             <td>Parent</td>
-            {% if(category.parent is null) %}
+            {% if(category.parentCategory is null) %}
                 <td>No parent</td>
             {% else %}
                  <td> {% set parentUrl = path(
