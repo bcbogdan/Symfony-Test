@@ -18,6 +18,6 @@ catalog_category_save:
 catalog_category_tree:
   path: /category/tree
   defaults: { _controller: AppBundle:Catalog:treeCategories}
-catalog_ajax_request:
+catalog_category_edit_ajax:
   path: /category/ajax/{categoryId}
   defaults: { _controller: AppBundle:Catalog:ajax}
