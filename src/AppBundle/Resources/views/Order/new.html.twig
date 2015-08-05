@@ -1,0 +1,14 @@
+    {% extends 'common/app.html.twig' %}
+    {% block header%}
+    <h1>New Order</h1>
+    {% endblock %}
+    {% block content %}
+    {{ form(form) }}
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('order') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+    {% endblock %}

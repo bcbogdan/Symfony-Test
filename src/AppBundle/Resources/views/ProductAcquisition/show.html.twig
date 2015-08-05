@@ -1,0 +1,10 @@
+    {% extends 'common/app.html.twig' %}
+    {% block header%}
+    <h1>ProductAcquisition</h1>
+    {% endblock %}
+    {% block content%}
+    {% include ('AppBundle:ProductAcquisition:show_table.html.twig') with {
+        'entity': entity,
+        'delete_form': delete_form
+    } %}
+    {% endblock %}
