@@ -1,0 +1,9 @@
+{% extends 'common/app.html.twig' %}
+    {% block header%}<h1>Dashboard</h1>{% endblock %}
+    {% block content %}
+        <ul>
+            {% for route in routes %}
+                <li><a href="{{ path( route ) }}">{{ route }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endblock %}
