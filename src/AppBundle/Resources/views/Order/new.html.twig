@@ -12,3 +12,9 @@
     </li>
 </ul>
     {% endblock %}
+    {% block javascripts %}
+        {{ parent() }}
+        <script type="text/javascript"
+                src="{{asset('bundles/app/js/embeddable-form.js')}}" >
+        </script>
+    {% endblock %}
