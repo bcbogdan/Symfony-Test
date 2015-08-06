@@ -215,4 +215,6 @@ class Product
     {
         return $this->getTitle();
     }
+
+    const REPOSITORY = 'AppBundle:Product';
 }

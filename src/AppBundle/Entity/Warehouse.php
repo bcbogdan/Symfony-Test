@@ -147,4 +147,10 @@ class Warehouse
     {
         return $this->product;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 }

@@ -152,4 +152,10 @@ class Contact
     {
         return $this->phone;
     }
+
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

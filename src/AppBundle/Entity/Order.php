@@ -46,7 +46,12 @@ class Order
      */
     private $customer;
 
-
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="OrderProductLine", mappedBy="order")
+     */
+    private $productLines;
 
     /**
      * Get id
@@ -127,6 +132,23 @@ class Order
         return $this->customer;
     }
 
+    public function getProductLines()
+    {
+        return $this->productLines;
+    }
+
+    public function setProductLines(array $productLines)
+    {
+        $this->productLines = $productLines;
+        return $this;
+    }
+
+    public function addProductLine(OrderProductLine $productLine)
+    {
+        $productLine->setOrder($this);
+        $this->productLines[] = $productLine;
+        return $this;
+    }
     /**
      * @ORM\PrePersist
      */

@@ -153,4 +153,11 @@ class Customer
     {
         return $this->address;
     }
+
+
+    public function __toString()
+    {
+        return $this->getAccount()->getLogin();
+    }
+    const REPOSITORY = 'AppBundle:Customer';
 }

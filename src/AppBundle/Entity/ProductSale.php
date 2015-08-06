@@ -185,4 +185,6 @@ class ProductSale
     {
         return $this->product;
     }
+
+    const REPOSITORY = 'AppBundle:ProductSale';
 }
