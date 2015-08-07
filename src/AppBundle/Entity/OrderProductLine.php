@@ -33,7 +33,7 @@ class OrderProductLine
      *
      * @ORM\ManyToOne(targetEntity="Order")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="order_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="order_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $order;

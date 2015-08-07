@@ -158,6 +158,7 @@ class Order
             $this->status  = self::STATUS_NEW;
         }
     }
+    const REPOSITORY = 'AppBundle:Order';
     const STATUS_NEW = 1;
     const STATUS_PROCESSING = 10;
     const STATUS_DELIVERED = 20;

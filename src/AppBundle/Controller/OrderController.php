@@ -169,28 +169,39 @@ class OrderController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
+        $postOrder = $request->get('appbundle_order');
+        $quantities = $request->get('quantity');
         $entity = $em->getRepository('AppBundle:Order')->find($id);
+        $entity->setCustomer(
+            $em
+                ->getRepository(Customer::REPOSITORY)
+                ->find($postOrder['customer'])
+        );
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Order entity.');
+        $productLinesToDelete = $entity->getProductLines();
+        foreach ($productLinesToDelete as $productLineDelete) {
+            $em->remove($productLineDelete);
+            $em->persist($entity);
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('order_edit', array('id' => $id)));
+        $em->persist($entity);
+        foreach ($postOrder['productLines'] as $productSaleId => $value) {
+            $productLine = new OrderProductLine();
+            $productLine->setProductSale(
+                $em
+                    ->getRepository(ProductSale::REPOSITORY)
+                    ->find($productSaleId)
+            );
+            $productLine->setQuantity($quantities[$productSaleId]);
+            $productLine->setOrder($entity);
+            $em->persist($productLine);
         }
 
-        return $this->render('AppBundle:Order:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $em->persist($entity);
+        $em->flush();
+        return $this->redirect(
+            $this->generateUrl('order_show', array('id' => $entity->getId()))
+        );
     }
     /**
      * Deletes a Order entity.

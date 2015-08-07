@@ -24,7 +24,7 @@ function createProductRow(product, inputName) {
     var title = $('<td>').html(product.title);
     var price = $('<td>').html(product.price);
     var quantity = $('<td>')
-        .append('<input type="text" name="quantity[' + product.id + ']" value="1"/>');
+        .append('<input type="text" name="quantity[' + product.id + ']" value="'+product.quantity+'"/>');
     var deleteButton = $('<td>').append($('<div title="delete">').button({
         icons: {
             primary: "ui-icon-trash"
