@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Warehouse
 {
+    const REPOSITORY = 'AppBundle:Warehouse';
     /**
      * @var integer
      *
@@ -34,21 +35,6 @@ class Warehouse
      * @ORM\Column(name="address", type="text", nullable=true)
      */
     private $address;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Product", inversedBy="warehouse")
-     * @ORM\JoinTable(name="warehouse_has_product",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="warehouse_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="product_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $product;
 
     /**
      * Constructor
@@ -115,39 +101,7 @@ class Warehouse
         return $this->address;
     }
 
-    /**
-     * Add product
-     *
-     * @param \AppBundle\Entity\Product $product
-     * @return Warehouse
-     */
-    public function addProduct(\AppBundle\Entity\Product $product)
-    {
-        $this->product[] = $product;
 
-        return $this;
-    }
-
-    /**
-     * Remove product
-     *
-     * @param \AppBundle\Entity\Product $product
-     */
-    public function removeProduct(\AppBundle\Entity\Product $product)
-    {
-        $this->product->removeElement($product);
-    }
-
-    /**
-     * Get product
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
-    
     public function __toString()
     {
         return $this->getName();

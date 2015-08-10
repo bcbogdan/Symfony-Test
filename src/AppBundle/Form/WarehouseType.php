@@ -17,7 +17,6 @@ class WarehouseType extends AbstractType
         $builder
             ->add('name')
             ->add('address')
-            ->add('product')
         ;
     }
     
