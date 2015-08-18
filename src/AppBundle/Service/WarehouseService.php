@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\ProductStock;
 use AppBundle\Entity\Warehouse;
+use AppBundle\Entity\Order;
 
 class WarehouseService extends AbstractDoctrineAware
 {
@@ -13,10 +14,12 @@ class WarehouseService extends AbstractDoctrineAware
     public function getAll()
     {
         return $this->entityManager
-                        ->getRepository(Warehouse::REPOSITORY)
-                        ->findAll();
+            ->createQueryBuilder()
+            ->select('warehouse')
+            ->from(Warehouse::REPOSITORY, 'warehouse')
+            ->getQuery()
+            ->getArrayResult();
     }
-
     public function getProductStocks($productId)
     {
         $stocks = $this->entityManager->
@@ -27,6 +30,10 @@ class WarehouseService extends AbstractDoctrineAware
         }
 
         return $stocks;
+    }
+
+    public function reserveProducts(Order $order)
+    {
     }
 
 }
