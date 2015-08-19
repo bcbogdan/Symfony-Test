@@ -8,6 +8,7 @@ services:
     parent: app.doctrine_aware
     calls:
       - [setWarehouseService, ["@app.warehouse"]]
+      - [setEmailService, ["@app.email"]]
     tags: #each tag should be on a single line, I split it here for readability
       - {name: kernel.event_listener, event: %app.order_before_create%,method:onBeforeCreate}
       - {name: kernel.event_listener, event: %app.order_after_create%,method:onAfterCreate}
