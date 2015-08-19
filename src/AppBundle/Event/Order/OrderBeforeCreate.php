@@ -2,7 +2,6 @@
 
 namespace AppBundle\Event\Order;
 
-
 use AppBundle\Event\LoggableEventInterface;
 use Symfony\Component\EventDispatcher\Event;
 

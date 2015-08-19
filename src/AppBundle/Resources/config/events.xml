@@ -6,11 +6,11 @@
 
     <parameters>
         <parameter key="app.order_before_create"
-        type="constant">AppBundle\Event\Order\OrderEvent::BEFORE_CREATE</parameter>
+                   type="constant">AppBundle\Event\Order\OrderEvent::BEFORE_CREATE</parameter>
         <parameter key="app.order_after_create"
-        type="constant">AppBundle\Event\Order\OrderEvent::AFTER_CREATE</parameter>
-        <parameter key="app.order_reservation_failed" type="constant"
-                >AppBundle\Event\Order\OrderEvent::PRODUCTS_RESERVATION_FAILED</parameter>
+                   type="constant">AppBundle\Event\Order\OrderEvent::AFTER_CREATE</parameter>
+        <parameter key="app.order_reservation_failed"
+                   type="constant">AppBundle\Event\Order\OrderEvent::PRODUCTS_RESERVATION_FAILED</parameter>
         <parameter key="app.order_products_reserved"
                    type="constant">AppBundle\Event\Order\OrderEvent::PRODUCTS_RESERVED</parameter>
         <parameter key="app.order_packaging_start"
@@ -23,6 +23,8 @@
                    type="constant">AppBundle\Event\Order\OrderEvent::DELIVERY_START</parameter>
         <parameter key="app.order_delivery_end"
                    type="constant">AppBundle\Event\Order\OrderEvent::DELIVERY_END</parameter>
+        <parameter key="app.order_status_change"
+                   type="constant">AppBundle\Event\Order\OrderStatus::STATUS_CHANGE</parameter>
     </parameters>
 </container>
 
