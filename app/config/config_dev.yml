@@ -17,6 +17,7 @@ monolog:
             type:   stream
             path:   "%kernel.logs_dir%/%kernel.environment%.log"
             level:  debug
+            channels: ["!json_rpc"]
         console:
             type:   console
             bubble: false
@@ -32,6 +33,17 @@ monolog:
                 VERBOSITY_VERY_VERBOSE: NOTICE
                 VERBOSITY_DEBUG: DEBUG
             channels: ["doctrine"]
+        json_rpc:
+            type: stream
+            path: "%kernel.logs_dir%/json-rpc-%kernel.environment%.log"
+            level: debug
+            channels: ["json_rpc"]
+        elasticsearch:
+            type:   elasticsearch
+            elasticsearch:
+                host: localhost
+            level: info
+            channels: [app, json_rpc]
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration
         #firephp:

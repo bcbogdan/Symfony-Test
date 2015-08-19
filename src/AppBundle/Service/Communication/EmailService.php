@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Service;
+namespace AppBundle\Service\Communication;
 
 use AppBundle\Communication\Email\Message;
 use AppBundle\Communication\Email\ProviderInterface;

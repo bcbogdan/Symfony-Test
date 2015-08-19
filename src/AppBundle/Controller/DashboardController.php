@@ -14,7 +14,7 @@ class DashboardController extends Controller
         }
 
         $dashboard = $this->get('app.dashboard');
-
+        $this->get('order')->createOrder(1, array(array('id' => 1, 'quantity' => 1)));
         return $this->render(
                         'AppBundle:Dashboard:index.html.twig', array('items' => $dashboard->getItems())
         );

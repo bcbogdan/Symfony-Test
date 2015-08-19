@@ -3,3 +3,9 @@ services:
         class: JsonRpcBundle\Server
         calls:
             - [setContainer, ["@service_container"]]
+
+    json_rpc.logger:
+            class: JsonRpcBundle\Logger
+            arguments: ["@?logger"]
+            tags:
+              - { name: monolog.logger, channel: json_rpc }

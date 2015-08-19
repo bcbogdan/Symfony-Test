@@ -6,9 +6,22 @@ services:
                 
     app.order_listener:
         class: AppBundle\Event\Listener\OrderListener
-        parent: app.doctrine_aware
-        calls:
-            - [setWarehouseService, ["@app.warehouse"]]
-        tags:
-            - {name: kernel.event_listener,event:%app.order_before_create%,method:onBeforeCreate}
+        arguments: [@app.warehouse, @app.delivery]
+        tags: #Put every tag on single line, I split them here for readability
+            - {name: kernel.event_listener,event: %app.order_before_create%,method:onBeforeCreate}
             - {name: kernel.event_listener,event: %app.order_after_create%,method:onAfterCreate}
+            - {name: kernel.event_listener,event: %app.order_reservation_failed%,method:onReservationFailed}
+            - {name: kernel.event_listener,event: %app.order_products_reserved%,method:onProductsReserved}
+            - {name: kernel.event_listener,event: %app.order_packaging_start%,method:onPackagingStart}
+            - {name: kernel.event_listener,event: %app.order_packaging_end%,method:onPackagingEnd}
+            - {name: kernel.event_listener,event: %app.order_delivery_start%,method:onDeliveryStart}
+            - {name: kernel.event_listener,event: %app.order_delivery_end%,method:onDeliveryEnd}
+
+    app.communication_listener:
+        class: AppBundle\Event\Listener\OrderCommunicationListener
+        arguments: [@app.communication]
+        tags: #Put every tag on single line, I split them here for readability
+            - {name: kernel.event_listener,event: %app.order_after_create%,method:onAfterCreate}
+            - {name: kernel.event_listener,event: %app.order_invoice_generated%,method:onInvoiceGenerated}
+            - {name: kernel.event_listener,event: %app.order_delivery_start%,method:onDeliveryStart}
+            - {name: kernel.event_listener,event: %app.order_delivery_end%,method:onDeliveryEnd}

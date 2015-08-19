@@ -25,13 +25,25 @@ services:
         tags:
             - {name: json_rpc.service, method: createOrder}
             
-    order:
-        alias: app.order
-    
-    warehouse:
-        alias: app.warehouse
+    order: @app.order
+    warehouse: @app.warehouse
     
     app.email:
-        class: AppBundle\Service\EmailService
+        class: AppBundle\Service\Communication\EmailService
+        public: false
         calls:
             - ["addProvider", ["@=service('kernel').getEnvironment() === 'dev' ? service('app.provider_email_dev') : service('app.provider_email_php')"]]
+
+    app.communication:
+        class: AppBundle\Service\Communication\CommunicationService
+        arguments: [@app.email]
+
+    event_dispatcher:
+        class: AppBundle\Event\EventDispatcher
+        arguments: [@service_container]
+    app.document:
+        class: AppBundle\Service\DocumentService
+        parent: app.doctrine_aware
+    app.delivery:
+        class: AppBundle\Service\DeliveryService
+        parent: app.doctrine_aware
