@@ -56,14 +56,23 @@ class WarehouseService extends AbstractDoctrineAware
     private function checkProductsStock(Order $order)
     {
         $quantities = array();
-        foreach ($order->getProductLines() as $productLine) {
-            $quantities[$productLine->getProductSale()->getProduct()->getId()] = $productLine->getQuantity();
-        }
-        $productStocks = $this->getProductStocksByProductIds(array_keys($quantities))->execute();
-        foreach ($productStocks as $productStock) {
-            $id = $productStock->getProduct()->getId();
-            if ($quantities[$id] <= $productStock->getQuantity()) {
-                unset($quantities[$id]);
+        if($order->getProductLines()) {
+            foreach ($order->getProductLines() as $productLine) {
+                $id = $productLine->getProductSale()->getProduct()->getId();
+                $quantities[$id] = $productLine->getQuantity();
+            }
+
+            $productStocks = $this
+                ->getProductStocksByProductIds(array_keys($quantities))
+                ->execute();
+
+            foreach ($productStocks as $productStock) {
+                $id = $productStock->getProduct()->getId();
+                if(isset($quantities[$id])) {
+                    if ($quantities[$id] <= $productStock->getQuantity()) {
+                        unset($quantities[$id]);
+                    }
+                }
             }
         }
         return empty($quantities);
