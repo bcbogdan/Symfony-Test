@@ -5,7 +5,7 @@ imports:
     - { resource: doctrine.yml }
     - { resource: dashboard.yml }
     - { resource: doctrine_mongodb.yml }
-
+    - { resource: rabbitmq.yml }
 framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
