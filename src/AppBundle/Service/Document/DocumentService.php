@@ -9,7 +9,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Templating\EngineInterface as Templating;
-
+use AppBundle\Exception\Document\DocumentNotFoundException;
 
 class DocumentService
 {
@@ -87,5 +87,15 @@ class DocumentService
         $process = new Process(sprintf("echo '%s' | wkhtmltopdf - -", $html));
         $process->run();
         return $process->getOutput();
+    }
+    public function getInvoiceHtml($orderNumber) {
+        $repository = $this->documentManager->getRepository(Document::REPOSITORY);
+        $document = $repository->findOneBy(
+            array('type' => 'invoice', 'orderNumber' => (int) $orderNumber)
+        );
+        if (!$document) {
+            throw new DocumentNotFoundException();
+        }
+        return $document->getBodyHtml();
     }
 }

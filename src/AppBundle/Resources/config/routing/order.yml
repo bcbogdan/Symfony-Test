@@ -28,3 +28,6 @@ order_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:Order:delete" }
     methods:  [POST, DELETE]
+order_invoice_view:
+    path: /{orderId}/invoice/view
+    defaults: { _controller: "AppBundle:Order:viewInvoice" }

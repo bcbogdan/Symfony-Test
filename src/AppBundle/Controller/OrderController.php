@@ -10,6 +10,7 @@ use AppBundle\Form\OrderType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Service\Document\DocumentService;
 
 /**
  * Order controller.
@@ -240,6 +241,12 @@ class OrderController extends Controller
                         ->add('submit', 'submit', array('label' => 'Delete'))
                         ->getForm()
         ;
+    }
+    public function viewInvoiceAction($orderId) {
+        /* @var $documentService DocumentService */
+        $documentService = $this->get(DocumentService::ID);
+        $html = $documentService->getInvoiceHtml($orderId);
+        return new \Symfony\Component\HttpFoundation\Response($html);
     }
 
 }

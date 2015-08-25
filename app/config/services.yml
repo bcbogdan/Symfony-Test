@@ -1,7 +1,13 @@
 imports:
     - { resource: "@AppBundle/Resources/config/services.yml" }
 
-session.handler.mongodb:
-    class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MongoDbSessionHandler
-    arguments: [@=service('doctrine_mongodb').getConnection().getMongoClient(), {database: session, collection: sessions}]
-    public: false
+services:
+    session.handler.mongodb:
+        class: Symfony\Component\HttpFoundation\Session\Storage\Handler\MongoDbSessionHandler
+        arguments: [@=service('doctrine_mongodb').getConnection().getMongoClient(), {database: session, collection: sessions}]
+        public: false
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        public: false
+        tags:
+            - { name: twig.extension }
