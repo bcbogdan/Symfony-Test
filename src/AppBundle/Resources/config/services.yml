@@ -35,8 +35,10 @@ services:
         class: AppBundle\Event\EventDispatcher
         arguments: [@service_container]        
     app.document:
-        class: AppBundle\Service\DocumentService
-        parent: app.doctrine_aware        
+        class: AppBundle\Service\Document\DocumentService
+        arguments: [@templating, @event_dispatcher, @doctrine_mongodb]
     app.delivery:
         class: AppBundle\Service\DeliveryService
         parent: app.doctrine_aware
+    app.authentication:
+        class: AppBundle\Service\AuthenticationService
