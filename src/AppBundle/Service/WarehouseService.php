@@ -62,8 +62,10 @@ class WarehouseService extends AbstractDoctrineAware
         $productStocks = $this->getProductStocksByProductIds(array_keys($quantities))->execute();
         foreach ($productStocks as $productStock) {
             $id = $productStock->getProduct()->getId();
-            if ($quantities[$id] <= $productStock->getQuantity()) {
-                unset($quantities[$id]);
+            if(isset($quantities[$id])) {
+                if ($quantities[$id] <= $productStock->getQuantity()) {
+                    unset($quantities[$id]);
+                }
             }
         }
         return empty($quantities);

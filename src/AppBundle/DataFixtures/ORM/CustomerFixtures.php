@@ -30,4 +30,10 @@ class CustomerFixtures extends AbstractDataFixture
         return 2;
     }
 
+    public function createAddress($country)
+    {
+        $address = new Address();
+        return $address->setCountry($country);
+    }
+
 }

@@ -65,6 +65,16 @@ class Order
     private $productLines;
 
     /**
+     *
+     */
+    private $billingAdress;
+
+    /**
+     *
+     */
+    private $shippingAdress;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -176,4 +186,25 @@ class Order
         }
     }
 
+    public function setBillingAddress($address)
+    {
+        $this->billingAdress = $address;
+        return $this;
+    }
+
+    public function setShippingAddress($address)
+    {
+        $this->shippingAdress = $address;
+        return $this;
+    }
+
+    public function getBillingAddress()
+    {
+        return $this->billingAdress;
+    }
+
+    public function getShippingAddress()
+    {
+        return $this->shippingAdress;
+    }
 }
