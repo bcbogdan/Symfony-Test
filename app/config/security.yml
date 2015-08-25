@@ -1,12 +1,35 @@
 security:
+    access_control:
+        - { path: ^/json-rpc, role: ROLE_API}
+        - { path: ^/admin, role: ROLE_ADMIN}
+        - { path: ^/, role: [ROLE_USER, ROLE_ADMIN, ROLE_API]}
     providers:
-        in_memory:
-            memory: ~
+        access_service:
+            id: access.user_provider
+    encoders:
+        AccessBundle\User:
+            algorithm: sha512
+            encode_as_base64: false
+            iterations: 0
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt|error)|css|images|js)/
             security: false
-
-        default:
-            anonymous: ~
+        login:
+            pattern: ^/login
+            security: false
+        api:
+            pattern: ^/json-rpc
+            http_basic: ~
+        external_provider:
+            pattern: ^/communication/external_provider
+            security: false
+        app:
+            pattern: .*
+            form_login:
+                check_path: /check
+                login_path: /login
+            logout:
+                path: /logout
+                target: /dashboard

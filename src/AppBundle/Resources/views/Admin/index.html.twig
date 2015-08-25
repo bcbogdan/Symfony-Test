@@ -1,0 +1,28 @@
+{% extends 'common/app.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript"
+            src="{{asset('bundles/app/jqGrid-4.8.2/js/minified/i18n/grid.locale-en.js')}}" >
+    </script>
+    <script type="text/javascript"
+            src="{{asset('bundles/app/jqGrid-4.8.2/js/minified/jquery.jqGrid.min.js')}}" >
+    </script>
+    <script type="text/javascript"
+            src="{{asset('bundles/app/js/admin.js')}}" >
+    </script>
+{% endblock %}
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet"
+          href="{{asset('bundles/app/jqGrid-4.8.2/css/ui.jqgrid.css')}}" >
+{% endblock %}
+{% block header%}
+    <h1>{{'administration'|trans|capitalize}}</h1>
+{% endblock %}
+{% block content%}
+    <div id="admin-tabs">
+        <ul>
+            <li><a href="{{ path('admin_users')}}">Users</a></li>
+        </ul>
+    </div>
+{% endblock %}

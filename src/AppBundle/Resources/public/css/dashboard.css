@@ -43,3 +43,7 @@ html, body {
 .jqdesktop-icon-container{
     margin: 5px;
 }
+
+#logout {
+    float: right;
+}

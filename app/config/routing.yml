@@ -1,5 +1,19 @@
+access:
+    resource: "@AccessBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
 
 json_rpc:
     resource: "@JsonRpcBundle/Resources/config/routing.yml"
+
+login_route:
+    path: /login
+    defaults: { _controller: AppBundle:Security:login }
+
+login_check:
+    path: /check
+
+logout:
+    path: /logout

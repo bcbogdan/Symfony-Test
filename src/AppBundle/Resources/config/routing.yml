@@ -57,3 +57,7 @@ app_dashboard:
 app_communication:
     resource: "@AppBundle/Resources/config/routing/communication.yml"
     prefix:   /communication
+
+app_admin:
+    resource: "@AppBundle/Resources/config/routing/admin.yml"
+    prefix: /admin

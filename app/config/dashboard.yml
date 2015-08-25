@@ -43,3 +43,5 @@ app:
                 title: warehouses
                 route: warehouse
                 icon: warehouse.png
+            admin:
+                route: admin

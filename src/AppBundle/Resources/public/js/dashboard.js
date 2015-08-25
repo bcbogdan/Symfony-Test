@@ -16,4 +16,17 @@ $(function () {
         });
     });
 
+    $('#dashboard .jqdesktop-statusbar').append($('#logout').button());
+    var loginWindow = $('#div-login').jqWindow({
+        width: 300,
+        height: 150,
+        visible: true,
+        showInTaskBar: false,
+        showDesktopIcon: false,
+        resizable: false,
+        maximizable: false,
+        closable: false,
+        minimizable: false
+    });
+    $('#dashboard').jqDesktop('addWindow', loginWindow);
 });

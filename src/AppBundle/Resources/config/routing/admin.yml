@@ -1,0 +1,18 @@
+admin:
+  path: /
+  defaults: { _controller: "AppBundle:Admin:index" }
+
+admin_users:
+  path: /users
+  defaults: { _controller: "AppBundle:Admin:listUsers" }
+
+admin_users_find:
+  path: /users/find
+  defaults: { _controller: "AppBundle:Admin:findUsers" }
+
+admin_users_edit:
+  path: /users/edit
+  defaults: { _controller: "AppBundle:Admin:editUser" }
+
+
+
