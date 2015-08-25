@@ -21,7 +21,9 @@ security:
             security: false
         api:
             pattern: ^/json-rpc
-            http_basic: ~
+            http_digest:
+                key: "randomkey"
+                realm: "secure-api"
         external_provider:
             pattern: ^/communication/external_provider
             security: false
